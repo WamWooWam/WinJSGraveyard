@@ -1,0 +1,29 @@
+﻿<!-- Copyright (c) Microsoft. All rights reserved. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/microsoft.skypeapp/">
+	<link href="./pages/login.css" rel="stylesheet">
+	<script src="./pages/login.js"></script>
+</head>
+<body>
+	<div class="login fragment">
+		<div class="logo">
+            <img src="./images/svg/logo_white.svg" width="284" height="126"/>
+		</div>
+
+        <progress class="win-ring"></progress>
+
+        <div class="infoPanel">
+            <h2 class="errorTitle hidden"></h2>
+            <div class="error hidden">
+                <div class="icon"></div>
+                <div class="message"></div>
+            </div>
+            <button class="text retryButton hidden" data-win-res="{textContent: 'login_general_button_title'}"></button>
+            <button id="btn-getskype" class="text retryButton getSkypeButton hidden" data-win-res="{textContent: 'login_general_button_get_skype'}"></button>
+        </div>
+	</div>
+</body>
+</html>

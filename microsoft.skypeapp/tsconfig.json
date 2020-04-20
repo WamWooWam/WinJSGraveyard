@@ -1,0 +1,12 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "lib": [ "ES2015", "DOM" ],
+    "target": "ES6",
+    "moduleResolution": "node",
+    "resolveJsonModule": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "microsoft.windowscommunicationsapps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "css-loader": "^3.5.2",
+    "webpack": "^4.42.1"
+  }
+}

@@ -4,7 +4,7 @@ functional as possible in most modern web browsers
 
 # Why?
 I went digging around Windows 8.1 and noticed that many key Metro apps, including stuff like Mail, People, Calendar, Music, Videos 
-and even Skype where written in JavaScript with the help of WinJS and the Windows Runtime platform, and as it turnsout they're all
+and even Skype where written in JavaScript with the help of WinJS and the Windows Runtime platform, and as it turns out they're all
 somewhat standard web applications, with a catch.
 
 Almost every app uses a native binary of some kind, usually written in C++/CX and exposed to JS via a corresponding `.winmd` file,

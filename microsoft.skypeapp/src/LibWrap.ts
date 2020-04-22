@@ -20,7 +20,7 @@ export class UIEventRunner {
         return (UIEventRunner._instance != undefined ? UIEventRunner._instance = new UIEventRunner() : UIEventRunner._instance);
     }
 
-    static run(context: UIEventContext, threshold: number) {
+    run(context: UIEventContext, threshold: number) {
 
     }
 }

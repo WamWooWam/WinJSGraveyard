@@ -1334,6 +1334,7 @@ h6 {
     background-color: ButtonFace;
     border-color: ButtonText;
     color: ButtonText;
+    background-clip: border-box;
   }
   button[type=submit],
   input[type=submit] {
@@ -5716,6 +5717,7 @@ input[type=reset] {
   color: #000000;
   border-color: rgba(0, 0, 0, 0.2);
   background-color: rgba(182, 182, 182, 0.7);
+  background-clip: border-box;
 }
 button:hover:active,
 input[type=button]:hover:active,

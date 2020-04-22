@@ -192,11 +192,82 @@ export namespace UI {
     }
 
     export namespace Popups {
-        export class MessageDialog {
+        export enum MessageDialogOptions {
+            none,
+            acceptUserInputAfterDelay
+        }
 
+        export class MessageDialog {
+            private id: string;
+
+            content: string;
+            title: string;
+
+            commands: Foundation.Collections.Vector<UICommand>;
+
+            options: MessageDialogOptions;
+            defaultCommandIndex: number;
+            cancelCommandIndex: number;
+
+            constructor(content: string, title: string = "") {
+                this.id = this.uuidv4();
+                this.content = content;
+                this.title = title;
+                this.commands = new Foundation.Collections.Vector<UICommand>([]);
+            }
+
+            showAsync(): Foundation.IAsyncOperation<UICommand> {
+
+                if (this.commands.count() == 0) {
+                    this.commands.append(new UICommand("Close"));
+                }
+
+                for (let i = 0; i < this.commands.count(); i++) {
+                    const el = this.commands.getAt(i);
+                    el.id = i;
+                }
+
+                return new Foundation.IAsyncOperation((resolve, reject) => {
+                    self.addEventListener("message", (ev: MessageEvent) => {
+                        if (ev.data.target === "Windows.UI.Popups.MessageDialog"
+                            && ev.data.data.id === this.id) {
+                            if (ev.data.event === "success") {
+                                resolve(this.commands.getAt(ev.data.data.commandId))
+                            }
+                            else {
+                                reject();
+                            }
+                        }
+                    });
+
+                    let message = {
+                        id: this.id,
+                        title: this.title,
+                        content: this.content,
+                        commands: this.commands.getArray().map(c => { return { id: c.id, label: c.label } })
+                    };
+
+                    self.parent.postMessage({ source: "MessageDialog", event: "showAsync", data: message }, "*");
+                });
+            }
+
+            private uuidv4() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
         }
         export class UICommand {
-            
+
+            constructor(label: string, invoked: Function = null) {
+                this.label = label;
+                this.invoked = invoked;
+            }
+
+            id: number;
+            label: string;
+            invoked: Function;
         }
     }
 
@@ -217,7 +288,7 @@ export namespace UI {
             }
         }
 
-        export class ToastNotifier  {
+        export class ToastNotifier {
             show(xml: any) { // todo: xml
 
             }

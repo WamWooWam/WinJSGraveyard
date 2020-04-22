@@ -1,4 +1,5 @@
 import { URL } from "url"
+import * as _ from "lodash"
 
 export namespace Foundation {
     export class IAsyncOperation<T> extends Promise<T> {
@@ -16,8 +17,74 @@ export namespace Foundation {
     export class Uri {
 
     }
-    
-    export const Url = URL;
+
+    export namespace Collections {
+        export class Vector<T> {
+            private _array: T[];
+
+            constructor(array: T[]) {
+                this._array = array;
+            }
+
+            append(t: T) {
+                this._array.push(t);
+            }
+
+            clear() {
+                this._array = [];
+            }
+
+            count() {
+                return this._array.length;
+            }
+
+            getAt(i: number) {
+                return this._array[i];
+            }
+
+            getMany(i: number, t: T[]) {
+                let j = i + t.length;
+                for (; i < j; i++)
+                    t[j - i] = this._array[i];
+            }
+
+            insertAt(i: number, t: T) {
+                this._array = [...this._array.slice(0, i), t, ...this._array.slice(i)];
+            }
+
+            indexOf(t: T) {
+                for (let i = 0; i < this._array.length; i++) {
+                    const el = this._array[i];
+                    if (el === t) {
+                        return { returnValue: true, index: i };
+                    }
+                }
+
+                return { returnValue: false };
+            }
+
+            removeAt(i: number) {
+                this._array = this._array.splice(i, 1);
+            }
+
+            removeAtEnd() {
+                this._array.pop();
+            }
+
+            replaceAll(t: T[]) {
+                this._array = t;
+            }
+
+            setAt(i: number, t: T) {
+                this._array[i] = t;
+            }
+
+            getArray(){
+                return this._array;
+            }
+
+        }
+    }
 
     export function Enumerable(value: boolean) {
         return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {

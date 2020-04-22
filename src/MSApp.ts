@@ -1,3 +1,5 @@
+import { UI } from "./Windows.UI";
+
 export function getViewOpener() {
     return null;
 }
@@ -19,6 +21,9 @@ export function execUnsafeLocalFunction(func: Function) {
     func(); // lmao tf am i meant to do here
 }
 
-export function terminateApp(...args) {
-    console.error("MSApp Termination Requested!!", args);
+export function terminateApp(e: any) {
+    let dialog = new UI.Popups.MessageDialog(e.stack, "An error has occurred");
+    dialog.showAsync().then(() => {
+        window.parent.postMessage({ source: "MSApp", event: "terminateApp", data: { error: e } }, "*");
+    });
 }

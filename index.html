@@ -6,15 +6,15 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Windows 8.1</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen'
-        href='./dist/index.css'>
+    <link rel='stylesheet' type='text/css' href='/dist/index.css'>
+    <link rel='stylesheet' type='text/css' href='/winjs/css/ui-light.css'>
 
     <link rel="apple-touch-icon" href="/dist/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 
 <body>
-    <div class="start">
+    <div class="start invisible">
 
         <div class="start-header">
             <h1 class="start-title">Start</h1>
@@ -70,6 +70,17 @@
                 data-splash-image="/images/scale-100/Splash.png"
                 data-show-text-on="square" data-url="/default.html"
                 style="grid-column-start: 7; grid-row-start: 3;">
+            </div>
+
+            <div class="tile-container" data-display-name="PC settings"
+                data-tile-size="square" data-package-name="microsoft.immersivecontrolpanel"
+                data-package-version="6.2.0.0" data-id="microsoft.windows.immersivecontrolpanel"
+                data-square-logo="/images/tilesmall.png"
+                data-square-small-logo="/images/smalllogo.png"
+                data-foreground-text="light" data-background-color="#5133AB"
+                data-splash-image="/images/splashscreen.png"
+                data-url="/default.html"
+                style="grid-column-start: 1; grid-row-start: 5;">
             </div>
         </div>
 

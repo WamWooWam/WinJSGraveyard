@@ -1,44 +1,58 @@
 import { Application } from "./Application";
 import { Desktop } from "./Desktop"
-import $d from "../dom-tools"
 import { createSplashElement } from "./Util";
+import $d from "../dom-tools"
+import * as _ from "lodash"
 
 export class CoreWindow {
-    private app: Application;
-    private rootElement: HTMLElement;
 
-    private titleBarElement: HTMLDivElement;
+    private _app: Application;
+    private _rootElement: HTMLElement;
+    private _titleBarElement: HTMLDivElement;
     // private titleBarIconElement: HTMLImageElement;
     // private titleBarTitleElement: HTMLSpanElement;
     // private titleBarMinimiseButton: HTMLButtonElement;
     // private titleBarCloseButton: HTMLButtonElement;
 
-    private frame: HTMLIFrameElement;
-    private splash: HTMLDivElement;
-    private sourceSet: boolean;
-    private suspended: boolean;
+    private _frame: HTMLIFrameElement;
+    private _splash: HTMLDivElement;
+    private _sourceSet: boolean;
+    private _suspended: boolean;
 
     private static rootElement: HTMLElement;
-    private static windowMap: Map<string, CoreWindow>;
+    private static mainWindowMap: Map<string, CoreWindow>;
+    private static windowSet: Array<CoreWindow>;
     frameLoaded: boolean;
 
     public static get windows() {
         CoreWindow.ensureRootElement();
-        return this.windowMap.values();
+        return CoreWindow.windowSet;
+    }
+
+    public get frame() {
+        return this._frame;
+    }
+
+    public get root() {
+        return this._rootElement;
+    }
+
+    public get app() {
+        return this._app;
     }
 
     constructor(app: Application) {
-        this.app = app;
-        this.rootElement = document.createElement("div");
-        this.rootElement.classList.add("core-window");
+        this._app = app;
+        this._rootElement = document.createElement("div");
+        this._rootElement.classList.add("core-window");
 
-        this.frame = <HTMLIFrameElement>$d("<iframe>")
+        this._frame = <HTMLIFrameElement>$d("<iframe>")
             .addClass("core-window-frame")
             .load(this.onFrameLoaded.bind(this), false).element;
 
-        this.splash = createSplashElement(app);
+        this._splash = createSplashElement(app);
 
-        this.titleBarElement = <HTMLDivElement>$d("<div>")
+        this._titleBarElement = <HTMLDivElement>$d("<div>")
             .addClass("core-window-titlebar")
             .append([
                 $d("<img>").addClass("core-window-icon").attr("src", app.squareSmallLogoUrl.replace(".png", ".targetsize-48.png")),
@@ -47,10 +61,10 @@ export class CoreWindow {
                 $d("<button>").addClass("core-window-close").click(this.onCloseButtonClicked.bind(this), false),
             ]).element;
 
-        this.rootElement.appendChild(this.frame);
-        this.rootElement.appendChild(this.splash);
-        this.rootElement.appendChild(this.titleBarElement);
-        CoreWindow.rootElement.appendChild(this.rootElement);
+        this._rootElement.appendChild(this._frame);
+        this._rootElement.appendChild(this._splash);
+        this._rootElement.appendChild(this._titleBarElement);
+        CoreWindow.rootElement.appendChild(this._rootElement);
     }
 
     onCloseButtonClicked(ev: Event) {
@@ -58,48 +72,65 @@ export class CoreWindow {
     }
 
     ensureVisible() {
-        this.rootElement.style.zIndex = (++Desktop.z).toString();
-        this.rootElement.classList.remove("invisible");
+        this._rootElement.style.zIndex = (++Desktop.z).toString();
+        this._rootElement.classList.remove("invisible");
     }
 
     activate() {
         this.ensureVisible();
 
-        if (this.frame.src && this.frameLoaded) {
+        if (this._frame.src && this.frameLoaded) {
             this.doFadeOut();
         }
         else {
-            this.frame.src = this.app.url;
+            this._frame.src = this._app.url;
         }
 
-        let hash = this.app.packageName + "/" + this.app.id;
+        let hash = this._app.packageName + "/" + this._app.id;
         if (window.location.hash != hash)
             window.location.hash = hash;
     }
 
     hide() {
-        this.rootElement.classList.add("invisible");
-        this.splash.classList.remove("invisible");        
-        this.frame.contentWindow.postMessage({ event: "suspending", target: "Windows.UI.WebUI.WebUIApplication" }, "*");
-        this.suspended = true;
+        this._rootElement.classList.add("invisible");
+        this._splash.classList.remove("invisible");
+        this._suspended = true;
+
+        this.sendMessage("Windows.UI.WebUI.WebUIApplication", "suspending", null);
+    }
+
+    terminate() {
+        this._frame.src = "about:blank";
+        this._rootElement.removeChild(this._frame);
+
+        _.remove(CoreWindow.windows, this);
+
+        if (CoreWindow.mainWindowMap.get(this.app.id) == this)
+            CoreWindow.mainWindowMap.delete(this.app.id);
+
+        CoreWindow.rootElement.removeChild(this._rootElement);
     }
 
     private onFrameLoaded() {
-        if (!this.splash || !this.frame.src)
+        if (!this._splash || !this._frame.src)
             return
 
         this.frameLoaded = true;
         this.doFadeOut();
     }
 
-    private doFadeOut() {
-        this.frame.contentWindow.postMessage({ event: this.suspended ? "resuming" : "activated", target: "Windows.UI.WebUI.WebUIApplication" }, "*");
-        this.suspended = false;
+    sendMessage(target: string, event: string, data: any) {
+        this._frame.contentWindow.postMessage({ event: event, target: target, data: data }, "*");
+    }
 
-        this.splash.classList.add("invisible");
+    private doFadeOut() {
+        this.sendMessage("Windows.UI.WebUI.WebUIApplication", this._suspended ? "resuming" : "activated", null);
+        this._suspended = false;
+
+        this._splash.classList.add("invisible");
         setTimeout(() => {
-            this.splash.classList.add("hidden");
-            this.splash.classList.remove("invisible");
+            this._splash.classList.add("hidden");
+            this._splash.classList.remove("invisible");
         }, 200);
     }
 
@@ -108,18 +139,20 @@ export class CoreWindow {
             return;
 
         CoreWindow.rootElement = <HTMLElement>document.getElementsByClassName("core-window-container")[0];
-        CoreWindow.windowMap = new Map<string, CoreWindow>();
+        CoreWindow.mainWindowMap = new Map<string, CoreWindow>();
+        CoreWindow.windowSet = [];
     }
 
     static createMainWindow(app: Application) {
         CoreWindow.ensureRootElement();
 
-        if (this.windowMap.has(app.id)) {
-            return this.windowMap.get(app.id);
+        if (this.mainWindowMap.has(app.id)) {
+            return this.mainWindowMap.get(app.id);
         }
         else {
             let window = new CoreWindow(app);
-            this.windowMap.set(app.id, window);
+            this.mainWindowMap.set(app.id, window);
+            this.windows.push(window);
             return window;
         }
     }

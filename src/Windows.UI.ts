@@ -232,7 +232,12 @@ export namespace UI {
                         if (ev.data.target === "Windows.UI.Popups.MessageDialog"
                             && ev.data.data.id === this.id) {
                             if (ev.data.event === "success") {
-                                resolve(this.commands.getAt(ev.data.data.commandId))
+                                let command = this.commands.getAt(ev.data.data.commandId);
+                                if (command.invoked != null) {
+                                    command.invoked(command);
+                                }
+                                
+                                resolve(command);
                             }
                             else {
                                 reject();

@@ -4,6 +4,8 @@ import { Start } from "./Start";
 import { Application } from "./Application";
 import { CoreWindow } from "./CoreWindow";
 import { ApplicationRegistry } from "./ApplicationRegistry";
+import "./tile.css"
+import "./splash-screen.css"
 
 export enum TileSize {
     small,
@@ -94,7 +96,7 @@ export class Tile {
             tileImageUrl = this.app.wideLogoUrl;
         }
 
-        if(this.tileSize == TileSize.small && this.app.squareSmallLogoUrl){
+        if (this.tileSize == TileSize.small && this.app.squareSmallLogoUrl) {
             tileImageUrl = this.app.squareSmallLogoUrl;
         }
 
@@ -104,7 +106,7 @@ export class Tile {
         tileFrontImage.classList.add(this.tileSizeString);
         tileFrontImageContainer.appendChild(tileFrontImage);
 
-        if (this.tileSize != TileSize.small && this.showTextSizes.includes(this.tileSize)) { 
+        if (this.tileSize != TileSize.small && this.showTextSizes.includes(this.tileSize)) {
             let tileFrontText = document.createElement("p");
             tileFrontText.innerText = this.app.displayName;
             tileFrontText.classList.add("tile-front-text");
@@ -118,8 +120,7 @@ export class Tile {
     }
 
     private constructCoreWindow() {
-        let coreWindow = CoreWindow.createMainWindow(this.app);
-        coreWindow.activate();
+        window.location.hash = this.app.packageName + "/" + this.app.id;
     }
 
     reset() {
@@ -137,7 +138,6 @@ export class Tile {
 
         let start = Start.getInstance();
         start.restoreTile(this);
-
     }
 
     private onTileClicked() {

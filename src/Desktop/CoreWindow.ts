@@ -3,6 +3,8 @@ import { Desktop } from "./Desktop"
 import { createSplashElement } from "./Util";
 import $d from "../dom-tools"
 import * as _ from "lodash"
+import "./core-window.css"
+import "./splash-screen.css"
 
 export class CoreWindow {
 
@@ -16,7 +18,6 @@ export class CoreWindow {
 
     private _frame: HTMLIFrameElement;
     private _splash: HTMLDivElement;
-    private _sourceSet: boolean;
     private _suspended: boolean;
 
     private static rootElement: HTMLElement;
@@ -55,8 +56,12 @@ export class CoreWindow {
         this._titleBarElement = <HTMLDivElement>$d("<div>")
             .addClass("core-window-titlebar")
             .append([
-                $d("<img>").addClass("core-window-icon").attr("src", app.squareSmallLogoUrl.replace(".png", ".targetsize-48.png")),
-                $d("<div>").addClass("core-window-totle").text(app.displayName),
+                $d("<div>").addClass("core-window-icon-container")
+                    .css("background", this._app.backgroundColor)
+                    .append([
+                        $d("<img>").addClass("core-window-icon").attr("src", app.squareSmallLogoUrl.replace(".png", ".targetsize-48.png"))
+                    ]),
+                $d("<div>").addClass("core-window-title").text(app.displayName),
                 $d("<button>").addClass("core-window-minimise"),
                 $d("<button>").addClass("core-window-close").click(this.onCloseButtonClicked.bind(this), false),
             ]).element;
@@ -131,6 +136,7 @@ export class CoreWindow {
         setTimeout(() => {
             this._splash.classList.add("hidden");
             this._splash.classList.remove("invisible");
+            this._titleBarElement.classList.add("hidden");
         }, 200);
     }
 

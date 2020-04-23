@@ -1,0 +1,48 @@
+#personalise-grid {
+    display: grid;
+    max-width: 575px;
+    max-height: 575px;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 375px 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    margin-top: 12px;
+}
+
+#lock-screen {
+    grid-column: 1/ span 2;
+    background-size: cover;
+    background-image: url("../images/web/screen/img100.jpg");
+}
+
+#account-picture {
+    grid-column: 1;
+    grid-row: 2;  
+    background-size: cover;
+    background-image: url("../images/account/user.png");
+}
+
+#picture-password {
+    grid-row: 2;
+    grid-column: 2;
+    background-size: cover;
+    background-image: url("../images/web/wallpaper/flowers/img7.jpg");
+}
+
+.personalise-button { 
+    color: white;    
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    transition: transform 0.1s ease-out;
+}
+
+.personalise-button:hover:active {
+    transform: scale3d(0.975, 0.975, 0.975);
+}
+
+#recent-settings {
+    margin-top: 35px;
+}

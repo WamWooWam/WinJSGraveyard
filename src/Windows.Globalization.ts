@@ -125,6 +125,9 @@ export namespace Globalization {
                 "year": (d: Date) => {
                     return `${d.getFullYear()}`
                 },
+                "year.full": (d: Date) => {
+                    return `${d.getFullYear()}`
+                },
                 "month.abbreviated": (d: Date) => {
                     return `${DateTimeFormatter.SHORT_MONTHS[d.getMonth()]}`
                 },
@@ -138,6 +141,9 @@ export namespace Globalization {
                     return `${DateTimeFormatter.MONTHS[d.getMonth()]} ${d.getFullYear()}`
                 },
                 "month day year": (d: Date) => {
+                    return `${d.getDate()} ${DateTimeFormatter.MONTHS[d.getMonth()]} ${d.getFullYear()}`
+                },
+                "day month.full year": (d: Date) =>  {
                     return `${d.getDate()} ${DateTimeFormatter.MONTHS[d.getMonth()]} ${d.getFullYear()}`
                 },
                 "{dayofweek.full}": (d: Date) => {
@@ -259,16 +265,104 @@ export namespace Globalization {
             this.date = new Date(Date.now());
         }
 
+        get dayOfWeek() {
+            return this.date.getDay();
+        }
+
+        get day() {
+            return this.date.getDate();
+        }
+
+        set day(num: number) {
+            this.date.setDate(num);
+        }
+
+        get month() {
+            return this.date.getMonth();
+        }
+
+        set month(num: number) {
+            this.date.setMonth(num);
+        }
+
+        get year() {
+            return this.date.getFullYear();
+        }
+
+        set year(num: number) {
+            this.date.setFullYear(num);
+        }
+
+        get hour() {
+            return this.date.getHours();
+        }
+
+        set hour(num: number) {
+            this.date.setHours(num);
+        }
+
+        get minute() {
+            return this.date.getMinutes();
+        }
+
+        set minute(num: number) {
+            this.date.setMinutes(num);
+        }
+
+        get second() {
+            return this.date.getSeconds();
+        }
+
+        set second(num: number) {
+            this.date.setSeconds(num);
+        }
+
+        get nanosecond() {
+            return this.date.getMilliseconds() * 1000;
+        }
+
+        set nanosecond(num: number) {
+            this.date.setMilliseconds(num / 1000);
+        }
+
+        addDays(days: number) {
+            this.date.setDate(this.date.getDate() + days);
+        }
+
+        addMonths(months: number) {
+            this.date.setMonth(this.date.getMonth() + months);
+        }
+
+        addYears(years: number) {
+            this.date.setFullYear(this.date.getFullYear() + years);
+        }
+
+        addHours(hours: number) {
+            this.date.setHours(this.date.getHours() + hours);
+        }
+
+        addMinutes(minutes: number) {
+            this.date.setMinutes(this.date.getMinutes() + minutes);
+        }
+        
+        addSeconds(seconds: number) {
+            this.date.setSeconds(this.date.getSeconds() + seconds);
+        }
+
         setToMin() {
-            this.date = new Date(0);
+            this.date = new Date(-8640000000000000 / 2);
         }
 
         setToMax() {
-            this.date = new Date(Number.MAX_SAFE_INTEGER);
+            this.date = new Date(8640000000000000 / 2);
         }
 
         getDateTime() {
             return this.date;
+        }
+
+        setDateTime(date: Date) {
+            this.date = date;
         }
     }
 }

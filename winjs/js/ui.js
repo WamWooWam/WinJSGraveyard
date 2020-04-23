@@ -29424,8 +29424,8 @@ define('WinJS/Controls/DatePicker',[
                     };
                 }
             });
-            if (_WinRT.Windows.Globalization.Calendar && _WinRT.Windows.Globalization.DateTimeFormatting) {
-                DatePicker.getInformation = DatePicker._getInformationWinRT;
+            if (_WinRT.Windows.Globalization.Calendar && _WinRT.Windows.Globalization.DateTimeFormatting) { // BUGBUG
+                DatePicker.getInformation = DatePicker._getInformationJS;
             } else {
                 DatePicker.getInformation = DatePicker._getInformationJS;
             }

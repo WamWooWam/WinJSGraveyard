@@ -1,5 +1,6 @@
 import { IMessage } from "./Desktop";
 import $d, { DOMBaseNode } from "../dom-tools"
+import "./message-dialog.css"
 
 export class MessageDialogImpl {
     showAsync(message: IMessage) {

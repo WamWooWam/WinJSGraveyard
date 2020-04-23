@@ -5715,9 +5715,8 @@ button,
 input[type=button],
 input[type=reset] {
   color: #000000;
-  border-color: rgba(0, 0, 0, 0.2);
+  border-color: rgba(182, 182, 182, 0.7);
   background-color: rgba(182, 182, 182, 0.7);
-  background-clip: border-box;
 }
 button:hover:active,
 input[type=button]:hover:active,

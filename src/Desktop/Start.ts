@@ -1,5 +1,6 @@
 import { Tile } from "./Tile";
 import { CoreWindow } from "./CoreWindow";
+import "./start.css"
 
 export class Start {
     private static _start: Start;

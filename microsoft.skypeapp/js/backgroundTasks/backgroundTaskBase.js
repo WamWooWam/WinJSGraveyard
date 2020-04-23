@@ -3,7 +3,7 @@
 (function () {
     "use strict";
 
-    importScripts("//Microsoft.WinJS.2.0/js/base.js");
+    importScripts("/winjs/js/base.js");
 
     var using = {
         Windows_ApplicationModel_Background_BackgroundWorkCost: Windows.ApplicationModel.Background.BackgroundWorkCost,

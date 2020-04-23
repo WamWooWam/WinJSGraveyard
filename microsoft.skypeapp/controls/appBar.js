@@ -1,14 +1,4 @@
-﻿
-
-
-
-
-
-
-
-
-
-(function () {
+﻿(function () {
     "use strict";
 
     var itemWidth = 270 + 15;

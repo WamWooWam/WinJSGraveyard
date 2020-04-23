@@ -1,0 +1,31 @@
+
+
+.start {
+    display: grid;
+    grid-template-rows: 170px 1fr 94px;
+    margin-left: 118px;
+    height: 100vh;
+    transition: opacity 0.15s ease-out;
+}
+
+.start-header {
+    display: flex;
+    align-items: center;
+}
+
+.start-tiles {
+    display: grid;
+    grid-column-gap: 4px;
+    grid-auto-columns: 60px;
+    grid-row-gap: 4px;
+    grid-auto-rows: 60px;
+}
+
+.start-title {
+    font-family: "Segoe UI";
+    font-size: 42pt;
+    font-weight: 200;
+    margin: 0;
+    padding-bottom: 14px;
+    margin-left: -2px;
+}

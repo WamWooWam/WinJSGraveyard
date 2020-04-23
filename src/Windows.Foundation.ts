@@ -18,6 +18,11 @@ export namespace Foundation {
 
     }
 
+    export class IsFakeWWA {
+        // this class exists only under the fake WWAHost this shim creates
+        // and as such can be used by custom apps to ensure the current environment
+    }
+
     export namespace Collections {
         export class Vector<T> {
             private _array: T[];

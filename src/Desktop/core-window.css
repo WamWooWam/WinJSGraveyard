@@ -37,6 +37,8 @@
 
 .core-window-titlebar.hidden {
     opacity: 1;    
+    display: flex;
+    transition-delay: 0.35s;
     transform: translateY(-30px);
 }
 

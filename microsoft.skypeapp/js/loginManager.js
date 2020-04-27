@@ -353,7 +353,6 @@ msWriteProfilerMark("SkypeDebugETW:loginManager,StartTM");
     function endForcedOffline() {
         Skype.Application.state.forcedOffline = false;
 
-
         var libStarted = (lib && lib.getLibStatus() !== LibWrap.WrSkyLib.libstatus_CONSTRUCTED);
         if (libStarted) {
             Skype.UI.navigate("login", { state: "useLiveIDAccount" });

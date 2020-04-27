@@ -8,13 +8,14 @@
     width: 400px;
     background: #140044;
     color: white;
-    padding:50px 0px 0px 0px;
 }
 
 #sidebar-content {
     flex: 1;    
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
+    height: 100%;
 }
 
 .sidebar-list-view-container {
@@ -82,7 +83,7 @@
 
 
 #sidebar-list-view {
-    height: 490px;
+    height: 100%;
 }
 
 .sidebar-list-view-item {

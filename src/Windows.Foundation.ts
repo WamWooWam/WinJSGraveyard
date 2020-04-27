@@ -6,11 +6,19 @@ export namespace Foundation {
         done(t: any, c: any) {
             this.then(t).catch(c);
         }
+
+        asPromise(): Promise<T> {
+            return <Promise<T>>this;
+        }
     }
 
     export class IAsyncAction extends Promise<void> {
         done(t: any, c: any) {
             this.then(t).catch(c);
+        }
+
+        asPromise(): Promise<void> {
+            return <Promise<void>>this;
         }
     }
 
@@ -84,10 +92,16 @@ export namespace Foundation {
                 this._array[i] = t;
             }
 
-            getArray(){
+            getArray() {
                 return this._array;
             }
 
+            forEach(func: (item: T) => void) {
+                for (let i = 0; i < this._array.length; i++) {
+                    const element = this._array[i];
+                    func(element);
+                }
+            }
         }
     }
 

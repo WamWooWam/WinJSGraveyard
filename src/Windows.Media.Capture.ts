@@ -1,3 +1,4 @@
+import { Foundation } from "./Windows.Foundation";
 
 export enum CameraCaptureUIMaxPhotoResolution {
     highestAvailable,
@@ -104,7 +105,9 @@ export enum VideoRotation {
 }
 
 export class MediaCapture {
-
+    initializeAsync(): Foundation.IAsyncAction {
+        return new Foundation.IAsyncAction((res, rej) => res());
+    }
 }
 
 export class MediaCaptureInitializationSettings {
@@ -112,5 +115,5 @@ export class MediaCaptureInitializationSettings {
     videoDeviceId: string;
 
     streamingCaptureMode: StreamingCaptureMode;
-    photoCaptureSource: PhotoCaptureSource;    
+    photoCaptureSource: PhotoCaptureSource;
 }

@@ -1,19 +1,33 @@
 (() => {
     var topLevelItems = [
-        { title: "PC and devices", page: "/pages/devices.html" },
-        { title: "Accounts", page: "/pages/accounts.html" },
-        { title: "OneDrive", page: "/pages/onedrive.html" },
-        { title: "Search and apps", page: "/pages/apps.html" },
-        { title: "Privacy", page: "/pages/privacy.html" },
-        { title: "Network", page: "/pages/network.html" },
-        { title: "Time and language", page: "/pages/time.html" },
-        { title: "Ease of Access", page: "/pages/accessibility.html" },
+        {
+            title: "PC and devices", subItems: [
+                { title: "Lock screen", page: "/pages/lockscreen.html" },
+                { title: "Display", page: "/pages/blank.html" },
+                { title: "Bluetooth", page: "/pages/blank.html" },
+                { title: "Devices", page: "/pages/blank.html" },
+                { title: "Mouse and touchpad", page: "/pages/blank.html" },
+                { title: "Typing", page: "/pages/blank.html" },
+                { title: "Corners and edges", page: "/pages/blank.html" },
+                { title: "Power and sleep", page: "/pages/blank.html" },
+                { title: "AutoPlay", page: "/pages/blank.html" },
+                { title: "Disk space", page: "/pages/blank.html" },
+                { title: "PC info", page: "/pages/about.html" },
+            ]
+        },
+        { title: "Accounts", page: "/pages/blank.html" },
+        { title: "OneDrive", page: "/pages/blank.html" },
+        { title: "Search and apps", page: "/pages/blank.html" },
+        { title: "Privacy", page: "/pages/blank.html" },
+        { title: "Network", page: "/pages/blank.html" },
+        { title: "Time and language", page: "/pages/blank.html" },
+        { title: "Ease of Access", page: "/pages/blank.html" },
         {
             title: "Update and recovery",
             subItems: [
                 { title: "Windows Update", page: "/pages/windowsupdate.html" },
-                { title: "File History", page: "/pages/filehistory.html" },
-                { title: "Recovery", page: "/pages/recovery.html" }
+                { title: "File History", page: "/pages/blank.html" },
+                { title: "Recovery", page: "/pages/blank.html" }
             ]
         }
     ];

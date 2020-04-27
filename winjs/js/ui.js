@@ -39255,20 +39255,8 @@ define('WinJS/Controls/Flyout/_Overlay',[
 
             // Feature detect for -ms-device-fixed positioning and fill out the
             // remainder of our WWA Soft KeyBoard handling logic with mixins.
-            var visualViewportSpace = _Global.document.createElement("DIV");
-            visualViewportSpace.className = _Constants._visualViewportClass;
-            _Global.document.body.appendChild(visualViewportSpace);
-
-            var propertiesMixin,
-                hasDeviceFixed = _Global.getComputedStyle(visualViewportSpace).position === "-ms-device-fixed";
-            if (!hasDeviceFixed && _WinRT.Windows.UI.ViewManagement.InputPane) {
-                // If we are in WWA with IE 10 mode, use special keyboard handling knowledge for IE10 IHM.
-                propertiesMixin = _keyboardInfo_Windows8WWA_Mixin;
-                _Global.document.body.removeChild(visualViewportSpace);
-            } else {
-                // If we are in WWA on IE 11 or outside of WWA on any web browser use general positioning logic.
-                propertiesMixin = _keyboardInfo_Mixin;
-            }
+            // If we are in WWA on IE 11 or outside of WWA on any web browser use general positioning logic.
+            var propertiesMixin = _keyboardInfo_Mixin;
 
             for (var propertyName in propertiesMixin) {
                 Object.defineProperty(_Overlay._keyboardInfo, propertyName, {

@@ -165,6 +165,7 @@
             "use strict";
 
             function initializeProperties(target, members, prefix) {
+                Object.defineProperty(target, 'name', { writable: true, enumerable: true, configurable: true });
                 var keys = Object.keys(members);
                 var isArray = Array.isArray(target);
                 var properties;

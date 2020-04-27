@@ -17,13 +17,15 @@ export class CoreWindow {
     // private titleBarCloseButton: HTMLButtonElement;
 
     private _frame: HTMLIFrameElement;
+    private _frameLoaded: boolean;
     private _splash: HTMLDivElement;
     private _suspended: boolean;
+
+    private _titleBarVisible: boolean;
 
     private static rootElement: HTMLElement;
     private static mainWindowMap: Map<string, CoreWindow>;
     private static windowSet: Array<CoreWindow>;
-    frameLoaded: boolean;
 
     public static get windows() {
         CoreWindow.ensureRootElement();
@@ -43,7 +45,13 @@ export class CoreWindow {
     }
 
     constructor(app: Application) {
+        this.showTitlebar = this.showTitlebar.bind(this);
+        this.hideTitlebar = this.hideTitlebar.bind(this);
+        this.onCloseButtonClicked = this.onCloseButtonClicked.bind(this);
+        this.onWindowMouseMoved = this.onWindowMouseMoved.bind(this);
+
         this._app = app;
+        this._titleBarVisible = false;
         this._rootElement = document.createElement("div");
         this._rootElement.classList.add("core-window");
 
@@ -63,17 +71,47 @@ export class CoreWindow {
                     ]),
                 $d("<div>").addClass("core-window-title").text(app.displayName),
                 $d("<button>").addClass("core-window-minimise"),
-                $d("<button>").addClass("core-window-close").click(this.onCloseButtonClicked.bind(this), false),
+                $d("<button>").addClass("core-window-close").click(this.onCloseButtonClicked, false),
             ]).element;
 
         this._rootElement.appendChild(this._frame);
         this._rootElement.appendChild(this._splash);
         this._rootElement.appendChild(this._titleBarElement);
+        this._rootElement.addEventListener("mousemove", this.onWindowMouseMoved);
+
         CoreWindow.rootElement.appendChild(this._rootElement);
     }
 
     onCloseButtonClicked(ev: Event) {
 
+    }
+
+    onWindowMouseMoved(ev: MouseEvent) {
+        let x = ev.pageX;
+        let y = ev.pageY;
+
+        // console.log(y);
+
+        if (this._titleBarVisible) {
+            if (y > 30) {
+                this.hideTitlebar();
+            }
+        }
+        else {
+            if (y <= 5) {
+                this.showTitlebar();
+            }
+        }
+    }
+
+    showTitlebar() {
+        this._titleBarElement.classList.remove("hidden");
+        this._titleBarVisible = true;
+    }
+
+    hideTitlebar() {
+        this._titleBarElement.classList.add("hidden");
+        this._titleBarVisible = false;
     }
 
     ensureVisible() {
@@ -84,7 +122,7 @@ export class CoreWindow {
     activate() {
         this.ensureVisible();
 
-        if (this._frame.src && this.frameLoaded) {
+        if (this._frame.src && this._frameLoaded) {
             this.doFadeOut();
         }
         else {
@@ -120,7 +158,9 @@ export class CoreWindow {
         if (!this._splash || !this._frame.src)
             return
 
-        this.frameLoaded = true;
+        this._frame.contentWindow.addEventListener("mousemove", this.onWindowMouseMoved);
+        this._frameLoaded = true;
+
         this.doFadeOut();
     }
 
@@ -136,7 +176,7 @@ export class CoreWindow {
         setTimeout(() => {
             this._splash.classList.add("hidden");
             this._splash.classList.remove("invisible");
-            this._titleBarElement.classList.add("hidden");
+            this.hideTitlebar();
         }, 200);
     }
 

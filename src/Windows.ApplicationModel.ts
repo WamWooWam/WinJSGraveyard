@@ -123,7 +123,7 @@ export namespace ApplicationModel {
         // }
     }
 
-    export namespace Background {        
+    export namespace Background {
         export enum BackgroundAccessStatus {
             unspecified,
             allowedWithAlwaysOnRealTimeConnectivity,
@@ -135,10 +135,28 @@ export namespace ApplicationModel {
             deniedByUser,
         }
 
+        export class TimeTrigger { }
+        export class SystemTrigger { }
+        export class MaintenanceTrigger { }
+        export class PushNotificationTrigger { }
+
+        export class SystemCondition { }
+
+        export class BackgroundTaskBuilder { }
+        export class BackgroundTaskRegistration { }
+
+        export enum SystemConditionType {
+            internetAvailable
+        }
+
+        export enum SystemTriggerType {
+            onlineIdConnectedStateChange
+        }
+
         export class BackgroundExecutionManager {
             static getAccessStatus(): BackgroundAccessStatus {
                 return BackgroundAccessStatus.deniedBySystemPolicy;
-            } 
+            }
         }
     }
 

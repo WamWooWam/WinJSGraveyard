@@ -392,8 +392,8 @@ window.roboSky = new Skype.Diagnostics.ETW.Tracer("RoboSky");
                 Skype.UI.HelpBubbles.Starter.instance,
                 Skype.UI.AppBar.instance
             ].forEach(function (component) {
-                roboSky.write('Default.js,initializing {0}'.format(component.__className));
-                component.init();
+                roboSky.write('Default.js,initializing {0}'.format(component?.constructor.name ?? "the fuck"));
+                component?.init();
             });
 
             global.lib.addEventListener("login", function () { roboSky.write("Bootstrapper,onLogin,StopTM"); });

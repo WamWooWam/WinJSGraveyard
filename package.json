@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.150",
+    "browserfs": "^1.4.3",
     "lodash": "^4.17.15"
   }
 }

@@ -18,7 +18,7 @@ const globalThis = (() => {
         return window;
     } else {
         return Function('return this')();
-    }    
+    }
 })();
 
 if (globalThis.document)
@@ -35,3 +35,5 @@ globalThis["MSApp"] = MSAppImpl;
 globalThis["LibWrap"] = LibWrapImpl;
 globalThis["Microsoft"] = MicrosoftImpl;
 globalThis["Windows"] = WindowsImpl;
+
+Object.defineProperty(Function.prototype, "name", { writable: true })

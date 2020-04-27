@@ -4,7 +4,7 @@ export * from "./Windows.Globalization"
 import * as CryptographyTemp from "./Windows.Security.Cryptography"
 import * as OnlineIdTemp from "./Windows.Security.Authentication.OnlineId"
 export * from "./Windows.System.UserProfile"
-export * from "./Windows.Storage"
+import * as StorageTemp from "./Windows.Storage"
 export * from "./Windows.Devices"
 export * from "./Windows.Networking"
 export * from "./Windows.Graphics"
@@ -33,5 +33,7 @@ export namespace Security{
         }
     }
 
-    export const Cryptography = CryptographyTemp;
+    export const Cryptography = CryptographyTemp.Security.Cryptography;
 }
+
+export const Storage = StorageTemp;

@@ -1,3 +1,5 @@
+import { Foundation } from "./Windows.Foundation";
+
 export namespace Devices {
     export namespace Input {
         export class TouchCapabilities {
@@ -5,7 +7,7 @@ export namespace Devices {
         }
     }
 
-    export namespace Enumeration { 
+    export namespace Enumeration {
         export enum DeviceAccessStatus {
             unspecified,
             allowed,
@@ -104,9 +106,26 @@ export namespace Devices {
             right,
         }
 
+        export class DeviceWatcher extends Foundation.EventTarget {
+            class: DeviceClass;
+
+            constructor(type: DeviceClass) {
+                super();
+                this.class = type;
+            }
+
+            start() {
+                
+            }
+        }
+
         export class DeviceInformation {
             static async findAllAsync(type: DeviceClass) {
                 return [];
+            }
+
+            static createWatcher(type: DeviceClass) {
+                return new DeviceWatcher(type);
             }
         }
     }

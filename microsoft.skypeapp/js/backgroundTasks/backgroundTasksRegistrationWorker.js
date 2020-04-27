@@ -8,7 +8,7 @@
 (function () {
     "use strict";
 
-    importScripts("/winjs/js/base.js", "/microsoft.skypeapp/js/globalextensions.js", "/microsoft.skypeapp/js/log.js", "/microsoft.skypeapp/js/backgroundTasks/backgroundTasksRegistrator.js");
+    importScripts("/microsoft.skypeapp/dist/shim.js", "/winjs/js/base.js", "/microsoft.skypeapp/js/globalextensions.js", "/microsoft.skypeapp/js/log.js", "/microsoft.skypeapp/js/backgroundTasks/backgroundTasksRegistrator.js");
 
     self.onmessage = function (e) {
         if (e.data === "register") {

@@ -1,27 +1,27 @@
-import { Foundation } from "../../../../../../src/Windows.Foundation"
 import { SuiteUpdateApplication } from "./Application"
+import { EventTarget, IAsyncOperation, Shim } from "../../../../../../src/Windows.Foundation";
 
 //
 // checks for updates of the "suite" (i.e. the group of communication apps) 
 // realistically not needed until we're in PWA territory so help me god
-export class SuiteUpdate extends Foundation.EventTarget {
+export class SuiteUpdate extends EventTarget {
     static loadAsync(...args) {
-        return new Foundation.IAsyncOperation<SuiteUpdate>((resolve, reject) => resolve(new SuiteUpdate()));
+        return new IAsyncOperation<SuiteUpdate>((resolve, reject) => resolve(new SuiteUpdate()));
     }
     static loadPlatformAsync(...args) {
-        return Foundation.Shim.shimmedAsyncFunction<SuiteUpdate>(args);
+        return Shim.shimmedAsyncFunction<SuiteUpdate>(args);
     }
     static loadManagerAsync(...args) {
-        return Foundation.Shim.shimmedAsyncFunction<SuiteUpdate>(args);
+        return Shim.shimmedAsyncFunction<SuiteUpdate>(args);
     }
     static loadUriAsync(...args) {
-        return Foundation.Shim.shimmedAsyncFunction<SuiteUpdate>(args);
+        return Shim.shimmedAsyncFunction<SuiteUpdate>(args);
     }
     static loadStorageFileAsync(...args) {
-        return Foundation.Shim.shimmedAsyncFunction<SuiteUpdate>(args);
+        return Shim.shimmedAsyncFunction<SuiteUpdate>(args);
     }
     static loadXmlAsync(...args) {
-        return Foundation.Shim.shimmedAsyncFunction<SuiteUpdate>(args);
+        return Shim.shimmedAsyncFunction<SuiteUpdate>(args);
     }
 
     get app(): SuiteUpdateApplication {

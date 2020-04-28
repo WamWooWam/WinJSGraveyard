@@ -1,5 +1,5 @@
 export * from "./Windows.ApplicationModel"
-export * from "./Windows.Foundation"
+import * as FouncationTemp from "./Windows.Foundation"
 export * from "./Windows.Globalization"
 import * as CryptographyTemp from "./Windows.Security.Cryptography"
 import * as OnlineIdTemp from "./Windows.Security.Authentication.OnlineId"
@@ -11,6 +11,8 @@ export * from "./Windows.Graphics"
 export * from "./Windows.Media"
 import * as UITemp from "./Windows.UI"
 import * as WebUITemp from "./Windows.UI.WebUI"
+
+export const Foundation = FouncationTemp;
 
 export namespace UI {
     export const WebUI = WebUITemp.UI.WebUI;

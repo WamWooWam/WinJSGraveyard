@@ -1,4 +1,4 @@
-import { Foundation } from "./Windows.Foundation"
+import { EventTarget, Collections } from "./Windows.Foundation";
 
 export namespace Networking {
 
@@ -34,11 +34,11 @@ export namespace Networking {
         }
 
         export class NetworkInformation {
-            private static source: Foundation.EventTarget;
+            private static source: EventTarget;
 
             static ensureSource() {
                 if (NetworkInformation.source == null) {
-                    NetworkInformation.source = new Foundation.EventTarget();
+                    NetworkInformation.source = new EventTarget();
                 }
             }
 
@@ -68,7 +68,7 @@ export namespace Networking {
                 let x = new HostName();
                 x.type = HostNameType.ipv4;
                 x.rawName = "127.0.0.1";
-                return new Foundation.Collections.Vector([x]);
+                return new Collections.Vector([x]);
             }
         }
     }

@@ -1,6 +1,6 @@
 // <ref src="Windows.Foundation.ts"/>
 
-import { Foundation } from "./Windows.Foundation"
+import { EventTarget } from "./Windows.Foundation";
 
 export namespace ApplicationModel {
     export namespace Resources {
@@ -161,7 +161,7 @@ export namespace ApplicationModel {
     }
 
     export namespace DataTransfer {
-        export class DataTransferManager extends Foundation.EventTarget {
+        export class DataTransferManager extends EventTarget {
             public static getForCurrentView() {
                 return new DataTransferManager();
             }
@@ -184,9 +184,13 @@ export namespace ApplicationModel {
     export class PackageId {
         constructor(version: PackageVersion) {
             this.version = version;
+            var getUrl = location.pathname.split("/")[1];
+            console.log(getUrl);        
+            this.name = getUrl;
         }
 
         public readonly version: PackageVersion;
+        public readonly name: string;
     }
 
     export class Package {

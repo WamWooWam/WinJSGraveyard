@@ -1,8 +1,8 @@
-import { Foundation } from "../../../../../src/Windows.Foundation";
+import { EventTarget, ShimProxyHandler, Enumerable } from "../../../../../src/Windows.Foundation";
 
 //
-// was Windows.Foundation.Collections not a thing at this stage?
-export class Collection extends Foundation.EventTarget {
+// was Windows.Collections not a thing at this stage?
+export class Collection extends EventTarget {
     private readonly collection: any[];
 
     constructor(collection: any[]) {
@@ -10,12 +10,12 @@ export class Collection extends Foundation.EventTarget {
         this.collection = collection
         this.count = collection.length;
 
-        return new Proxy(this, new Foundation.ShimProxyHandler());
+        return new Proxy(this, new ShimProxyHandler());
     }
 
     public count: number;
 
-    @Foundation.Enumerable(true)
+    @Enumerable(true)
     public get totalCount(): number {
         return this.collection.length;
     }

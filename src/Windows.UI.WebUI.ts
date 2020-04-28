@@ -1,12 +1,13 @@
 /// <ref src="Windows.Foundation.ts"/>
 /// <ref src="Windows.ApplicationModel.ts"/>
 
-import { Foundation } from "./Windows.Foundation"
 import { ApplicationModel } from "./Windows.ApplicationModel"
+import { EventTarget } from "./Windows.Foundation";
+import { isInWWA } from "./util";
 
 export namespace UI.WebUI {
     export class WebUIApplication {
-        private static source: Foundation.EventTarget;
+        private static source: EventTarget;
 
         static onWindowMessage(ev: MessageEvent) {
             if (ev.data.target === "Windows.UI.WebUI.WebUIApplication") {
@@ -26,10 +27,18 @@ export namespace UI.WebUI {
 
         static init() {
             if (WebUIApplication.source == null) {
-                WebUIApplication.source = new Foundation.EventTarget();
+                WebUIApplication.source = new EventTarget();
+
+                if (!isInWWA()) {
+                    self.addEventListener("DOMContentLoaded", () => {
+                        setTimeout(() => {
+                            WebUIApplication.dispatchEvent(new WebUILaunchActivatedEvent(ApplicationModel.Activation.ActivationKind.launch))
+                        }, 1000);
+                    })
+                }
             }
-            if (self["addEventListener"] !== undefined)
-                self.addEventListener("message", WebUIApplication.onWindowMessage);
+
+            self.addEventListener("message", WebUIApplication.onWindowMessage);
         }
 
         static addEventListener(event: string, handler: EventListenerOrEventListenerObject) {
@@ -59,9 +68,9 @@ export namespace UI.WebUI {
         getDeferral() {
             return new ActivatedDeferral();
         }
-    }    
+    }
 
-    export class SuspendingOperation  {
+    export class SuspendingOperation {
         getDeferral() {
             return new ActivatedDeferral();
         }
@@ -94,13 +103,13 @@ export namespace UI.WebUI {
             this.kind = kind;
             this.activatedOperation = new ActivatedOperation();
             this.detail = [new WebUILaunchActivatedEventArgs(this.activatedOperation)]
-        }  
-    
+        }
+
     }
-    
+
     export class SuspendingEvent extends Event {
         public readonly kind: number;
-        public readonly suspendingOperation : SuspendingOperation;
+        public readonly suspendingOperation: SuspendingOperation;
         public readonly detail: SuspendingEventArgs[];
 
         constructor() {

@@ -1,6 +1,7 @@
-import { Foundation } from "../../../../../src/Windows.Foundation";
+import { EventTarget, Enumerable } from "../../../../../src/Windows.Foundation";
 
-export class PlatformObject extends Foundation.EventTarget {
+
+export class PlatformObject extends EventTarget {
     public objectId: string;
     public objectType: string;
 
@@ -9,17 +10,17 @@ export class PlatformObject extends Foundation.EventTarget {
         this.objectType = type;
     }
 
-    @Foundation.Enumerable(true)
+    @Enumerable(true)
     public get canEdit(): boolean {
         return false;
     }
 
-    @Foundation.Enumerable(true)
+    @Enumerable(true)
     public get canDelete(): boolean {
         return false;
     }
 
-    @Foundation.Enumerable(true)
+    @Enumerable(true)
     public get isObjectValid(): boolean {
         return this.objectId != "invalid";
     }

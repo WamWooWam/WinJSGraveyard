@@ -1,11 +1,11 @@
-import { Foundation } from "../../../../../src/Windows.Foundation";
+import { EventTarget, ShimProxyHandler } from "../../../../../src/Windows.Foundation";
 import { WindowsLive } from "../Enums";
 import { AccountManager } from "./AccountManager";
 import { PeopleManager } from "./PeopleManager";
 import { MailManager } from "./MailManager";
 import { CalendarManager } from "./CalendarManager";
 
-export class Client extends Foundation.EventTarget {
+export class Client extends EventTarget {
     private _calendarManager: CalendarManager;
     private _accountManager: AccountManager;
     private _peopleManager: PeopleManager;
@@ -29,7 +29,7 @@ export class Client extends Foundation.EventTarget {
         this._mailManager = new MailManager(this);
         this._calendarManager = new CalendarManager(this);
 
-        return new Proxy(this, new Foundation.ShimProxyHandler());
+        return new Proxy(this, new ShimProxyHandler());
     }
 
     onDatabaseOpened(ev: Event) {
@@ -54,19 +54,19 @@ export class Client extends Foundation.EventTarget {
     }
 
     public get accountManager(): AccountManager {
-        return new Proxy(this._accountManager, new Foundation.ShimProxyHandler());
+        return new Proxy(this._accountManager, new ShimProxyHandler());
     }
     
     public get calendarManager(): CalendarManager {
-        return new Proxy(this._calendarManager, new Foundation.ShimProxyHandler());
+        return new Proxy(this._calendarManager, new ShimProxyHandler());
     }
 
     public get peopleManager(): PeopleManager {
-        return new Proxy(this._peopleManager, new Foundation.ShimProxyHandler());
+        return new Proxy(this._peopleManager, new ShimProxyHandler());
     }
 
     public get mailManager(): MailManager {
-        return new Proxy(this._mailManager, new Foundation.ShimProxyHandler());
+        return new Proxy(this._mailManager, new ShimProxyHandler());
     }
 
     public get isMock(): boolean {

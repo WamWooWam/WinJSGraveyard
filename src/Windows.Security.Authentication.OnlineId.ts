@@ -1,5 +1,6 @@
 /// <ref src="Windows.Foundation.ts"/>
-import { Foundation } from "./Windows.Foundation"
+
+import { IAsyncOperation } from "./Windows.Foundation";
 
 export namespace Security.Authentication.OnlineId {
     export class OnlineIdServiceTicketRequest {
@@ -18,8 +19,8 @@ export namespace Security.Authentication.OnlineId {
 
     export class OnlineIdAuthenticator {
         authenticateUserAsync(request: OnlineIdServiceTicketRequest[], proptType: CredentialPromptType)
-            : Foundation.IAsyncOperation<UserIdentity> {
-            return new Foundation.IAsyncOperation<UserIdentity>(async (resolve, reject) => {
+            : IAsyncOperation<UserIdentity> {
+            return new IAsyncOperation<UserIdentity>(async (resolve, reject) => {
                 reject({});
             });
         }

@@ -1,9 +1,9 @@
 /// <ref src="Windows.Foundation.ts"/>
-import { Foundation } from "./Windows.Foundation"
+import {  EventTarget, ShimProxyHandler, Rect, Collections, IAsyncOperation } from "./Windows.Foundation"
 
 export namespace UI {
     export namespace ApplicationSettings {
-        export class SettingsPane extends Foundation.EventTarget {
+        export class SettingsPane extends EventTarget {
             public static getForCurrentView() {
                 return new SettingsPane();
             }
@@ -15,9 +15,9 @@ export namespace UI {
     }
 
     export namespace Input {
-        export class EdgeGesture extends Foundation.EventTarget {
+        export class EdgeGesture extends EventTarget {
             public static getForCurrentView() {
-                return new Proxy(new EdgeGesture(), new Foundation.ShimProxyHandler);
+                return new Proxy(new EdgeGesture(), new ShimProxyHandler);
             }
         }
     }
@@ -106,9 +106,9 @@ export namespace UI {
     }
 
     export namespace ViewManagement {
-        export class ApplicationView extends Foundation.EventTarget {
+        export class ApplicationView extends EventTarget {
             public static getForCurrentView() {
-                return new Proxy(new ApplicationView(), new Foundation.ShimProxyHandler);
+                return new Proxy(new ApplicationView(), new ShimProxyHandler);
             }
 
             public get id(): number {
@@ -173,12 +173,12 @@ export namespace UI {
             custom,
         }
 
-        export class InputPane extends Foundation.EventTarget {
+        export class InputPane extends EventTarget {
             public static getForCurrentView() {
-                return new Proxy(new InputPane(), new Foundation.ShimProxyHandler);
+                return new Proxy(new InputPane(), new ShimProxyHandler);
             }
 
-            get occludedRect(): Foundation.Rect {
+            get occludedRect(): Rect {
                 return { x: 0, y: 0, width: 0, height: 0 };
             }
         }
@@ -203,7 +203,7 @@ export namespace UI {
             content: string;
             title: string;
 
-            commands: Foundation.Collections.Vector<UICommand>;
+            commands: Collections.Vector<UICommand>;
 
             options: MessageDialogOptions;
             defaultCommandIndex: number;
@@ -213,10 +213,10 @@ export namespace UI {
                 this.id = this.uuidv4();
                 this.content = content;
                 this.title = title;
-                this.commands = new Foundation.Collections.Vector<UICommand>([]);
+                this.commands = new Collections.Vector<UICommand>([]);
             }
 
-            showAsync(): Foundation.IAsyncOperation<UICommand> {
+            showAsync(): IAsyncOperation<UICommand> {
 
                 if (this.commands.count() == 0) {
                     this.commands.append(new UICommand("Close"));
@@ -227,7 +227,7 @@ export namespace UI {
                     el.id = i;
                 }
 
-                return new Foundation.IAsyncOperation((resolve, reject) => {
+                return new IAsyncOperation((resolve, reject) => {
                     self.addEventListener("message", (ev: MessageEvent) => {
                         if (ev.data.target === "Windows.UI.Popups.MessageDialog"
                             && ev.data.data.id === this.id) {

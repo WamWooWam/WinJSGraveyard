@@ -1,4 +1,4 @@
-import { Foundation } from "../../src/Windows.Foundation";
+import { EventTarget, ShimProxyHandler, IAsyncAction } from "../../src/Windows.Foundation";
 
 export class AccessSession {
     static hotspottype_SUPPORTED: number = 6;
@@ -6191,14 +6191,14 @@ export class Voicemail {
         console.error('shimmed function Voicemail.initializeLifetimeService')
     }
 }
-export class WrSkyLib extends Foundation.EventTarget {
+export class WrSkyLib extends EventTarget {
 
     constructor() {
         super();
-        return new Proxy(this, new Foundation.ShimProxyHandler());
+        return new Proxy(this, new ShimProxyHandler());
     }
 
-    get loggedIn() : boolean {
+    get loggedIn(): boolean {
         return true;
     }
 
@@ -6712,7 +6712,7 @@ export class WrSkyLib extends Foundation.EventTarget {
     }
 
     static initPlatform() {
-        return new Foundation.IAsyncAction((res, rej) => {res()});
+        return new IAsyncAction((res, rej) => { res() });
     }
 
     static log(subsystem, message) {

@@ -1,4 +1,4 @@
-import { Foundation } from "./Windows.Foundation";
+import { EventTarget } from "./Windows.Foundation";
 
 export namespace Devices {
     export namespace Input {
@@ -106,7 +106,7 @@ export namespace Devices {
             right,
         }
 
-        export class DeviceWatcher extends Foundation.EventTarget {
+        export class DeviceWatcher extends EventTarget {
             class: DeviceClass;
 
             constructor(type: DeviceClass) {

@@ -1,5 +1,6 @@
-import { Foundation } from "./Windows.Foundation";
 import { StorageFolder } from "./Windows.Storage.FileSystem";
+
+export * from "./Windows.Storage.FileSystem"
 
 export class ApplicationData {
     public static get current(): ApplicationData {
@@ -12,8 +13,20 @@ export class ApplicationData {
         return self.localStorage != undefined ? new LocalStorageBackedContainer("roamingSettings") : new WebWorkerBackedContainer("roamingSettings");
     }
 
+    public get localCacheFolder(): StorageFolder {
+        return StorageFolder.getFolderFromPathSync("/appdata/localCache");
+    }
+
     public get localFolder(): StorageFolder {
-        return StorageFolder.getFolderFromPathSync("/test/localFolder");
+        return StorageFolder.getFolderFromPathSync("/appdata/local");
+    }
+
+    public get roamingFolder(): StorageFolder {
+        return StorageFolder.getFolderFromPathSync("/appdata/roaming");
+    }
+
+    public get temporaryFolder(): StorageFolder {
+        return StorageFolder.getFolderFromPathSync("/temp");
     }
 }
 
@@ -123,5 +136,3 @@ export class LocalStorageBackedContainer extends ApplicationDataContainer {
         localStorage.removeItem(this.name + "." + name);
     }
 }
-
-export * from "./Windows.Storage.FileSystem"

@@ -7,3 +7,11 @@ export function randstr(length: number) {
     }
     return result;
 }
+
+export function isInWWA () {
+    try {
+        return typeof window == "object" && window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+}

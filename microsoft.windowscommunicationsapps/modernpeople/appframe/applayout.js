@@ -3,8 +3,8 @@
     t.Layout = function() {
         this._queryWindowLayout();
         this._layoutChangedHandler = this._onLayoutChanged.bind(this);
-        this._mql = window.matchMedia("(-ms-view-state: snapped)");
-        this._mqlOrient = window.matchMedia("(-ms-view-state: fullscreen-portrait)");
+        this._mql = window.matchMedia("(max-width: 375px)");
+        this._mqlOrient = window.matchMedia("(orientation: portrait)");
         this._mqlTall = window.matchMedia("(min-height: 1024px)");
         this._mql.addListener(this._layoutChangedHandler);
         this._mqlOrient.addListener(this._orientationChangedHandler = this._onOrientationChanged.bind(this));

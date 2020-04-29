@@ -4942,7 +4942,7 @@ progress:indeterminate {
     padding-bottom: 0px;
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 375px) {
     #moveFlyout {
         max-width: 200px;
     }

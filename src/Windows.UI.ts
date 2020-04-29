@@ -1,5 +1,5 @@
 /// <ref src="Windows.Foundation.ts"/>
-import {  EventTarget, ShimProxyHandler, Rect, Collections, IAsyncOperation } from "./Windows.Foundation"
+import { EventTarget, ShimProxyHandler, Rect, Collections, IAsyncOperation } from "./Windows.Foundation"
 
 export namespace UI {
     export namespace ApplicationSettings {
@@ -122,6 +122,13 @@ export namespace UI {
             public set title(value: string) {
 
             }
+
+            public static get value(): ApplicationViewState {
+                if (window.matchMedia("(max-width: 376px)").matches)
+                    return ApplicationViewState.snapped
+                else
+                    return ApplicationViewState.filled;
+            }
         }
 
         export enum ApplicationViewBoundsMode {
@@ -236,7 +243,7 @@ export namespace UI {
                                 if (command.invoked != null) {
                                     command.invoked(command);
                                 }
-                                
+
                                 resolve(command);
                             }
                             else {

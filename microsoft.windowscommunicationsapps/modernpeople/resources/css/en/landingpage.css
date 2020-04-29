@@ -749,7 +749,7 @@
     }
 }
 
-@media screen and (-ms-view-state:fullscreen-portrait) and (min-width: 501px) and (min-height:1024px) {
+@media screen and (orientation:portrait) and (min-width: 501px) and (min-height:1024px) {
     .profileLanding-panelContent {
         grid-template-columns:100%;
         grid-template-rows: auto 1fr !important;
@@ -800,7 +800,7 @@
     }
 }
 
-@media screen and (-ms-view-state:fullscreen-portrait) and (min-width: 501px) and (min-height:1024px) and (max-height:1365px) {
+@media screen and (orientation:portrait) and (min-width: 501px) and (min-height:1024px) and (max-height:1365px) {
     .profileLanding-panelContent-left {
         grid-template-rows:40px auto auto 26px;
         grid-template-columns: 190px 1fr;

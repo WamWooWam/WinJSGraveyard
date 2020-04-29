@@ -421,7 +421,7 @@
 }
 
 .viewport-horizontal .alphabetsSection {
-    grid-column-end: span 2 !important;
+    /* grid-column-end: span 2 !important; */
 }
 
 .viewport-horizontal .alphabetsSection .sectionContent {
@@ -1105,7 +1105,7 @@
     background-color: transparent;
 }
 
-@media screen and (-ms-view-state:snapped) {
+@media screen and (max-width: 375px) {
     .app-frame-body .semanticZoomEnabled {
         position: absolute;
     }

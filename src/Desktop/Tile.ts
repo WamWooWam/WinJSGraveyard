@@ -30,11 +30,13 @@ export class Tile {
     private tileElement: HTMLDivElement;
     private showTextSizes: Array<TileSize>
 
+    tileGroup: HTMLElement;
     tileBack: HTMLDivElement;
     tileFront: HTMLDivElement;
     splash: HTMLDivElement;
 
     constructor(tileContainerElement: HTMLDivElement) {
+        this.tileGroup = tileContainerElement.closest(".start-tile-group");
         this.tileContainerElement = tileContainerElement;
         this.tileStyle = tileContainerElement.style.cssText;
         this.tileContainerPostElement = <HTMLDivElement>tileContainerElement.nextElementSibling;
@@ -92,12 +94,16 @@ export class Tile {
 
         let tileImageUrl = this.app.squareLogoUrl.replace(".png", ".scale-100.png");
 
-        if (this.tileSize == TileSize.wide && this.app.wideLogoUrl) {
-            tileImageUrl = this.app.wideLogoUrl;
+        if (this.tileSize === TileSize.wide && this.app.wideLogoUrl) {
+            tileImageUrl = this.app.wideLogoUrl.replace(".png", ".scale-100.png");
         }
 
-        if (this.tileSize == TileSize.small && this.app.squareSmallLogoUrl) {
-            tileImageUrl = this.app.squareSmallLogoUrl;
+        if (this.tileSize === TileSize.small && this.app.squareSmallLogoUrl) {
+            tileImageUrl = this.app.squareSmallLogoUrl.replace(".png", ".scale-100.png");
+        }
+
+        if (this.tileSize === TileSize.large && this.app.squareLargeLogoUrl) {
+            tileImageUrl = this.app.squareLargeLogoUrl.replace(".png", ".scale-100.png");
         }
 
         let tileFrontImage = document.createElement("img");

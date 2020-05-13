@@ -7,7 +7,7 @@
     <title>Windows 8.1</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' href='/winjs/css/ui-light.css'>
-    
+
     <link rel="apple-touch-icon" href="/dist/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -15,99 +15,221 @@
 </head>
 
 <body>
-    <div class="start invisible">
+    <div class="start start-screen invisible">
 
-        <div class="start-header">
+        <div class="start-header start-main-header">
             <h1 class="start-title">Start</h1>
+
+            <div class="start-header-buttons">
+                <div class="start-header-button start-header-user-button">
+                    <div class="username">
+                        <p class="primary">
+                            Thomas
+                        </p>
+                        <p class="secondary">
+                            May
+                        </p>
+                    </div>
+                    <img src="/microsoft.immersivecontrolpanel/images/account/user.png"
+                        class="picture">
+                </div>
+
+                <div class="start-header-button start-header-power">
+                    &#xE07D;
+                </div>
+
+                <div class="start-header-button start-header-search">
+                    &#xE2FB;
+                </div>
+            </div>
         </div>
 
         <div class="start-tiles">
-            <div class="tile-container" data-tile-size="large"
-                data-package-name="microsoft.windowscommunicationsapps"
-                data-package-version="17.5.9600.22013"
-                data-id="Microsoft.WindowsLive.Mail" data-display-name="Mail"
-                data-square-logo="/modernmail/Res/MailLogo.png"
-                data-square-small-logo="/modernmail/Res/MailSmallLogo.png"
-                data-foreground-text="light" data-background-color="#0072C6"
-                data-splash-image="/modernmail/Res/MailSplash.png"
-                data-show-text-on="square|wide|large"
-                data-url="/modernmail/app/app.html">
-            </div>
+            <div class="start-tile-group">
 
-            <div class="tile-container" data-tile-size="wide"
-                style="grid-column-start: 5;"
-                data-package-name="microsoft.windowscommunicationsapps"
-                data-package-version="17.5.9600.22013"
-                data-id="Microsoft.WindowsLive.People"
-                data-display-name="People"
-                data-square-logo="/modernpeople/People.png"
-                data-square-small-logo="/modernpeople/PeopleSmall.png"
-                data-foreground-text="light" data-background-color="#d24726"
-                data-splash-image="/modernpeople/PeopleSplash.png"
-                data-show-text-on="square|wide|large"
-                data-url="/modernpeople/appframe/people.htm">
-            </div>
+                <div class="tile-group-header">
+                    <div class="tile-group-header-text">
+                        This is a tile group!
+                    </div>
+                </div>
 
-            <div class="tile-container" data-display-name="Calendar"
-                data-package-name="microsoft.windowscommunicationsapps"
-                data-package-version="17.5.9600.22013"
-                data-id="Microsoft.WindowsLive.Calendar"
-                data-square-logo="/moderncalendar/calendarlogo.png"
-                data-square-small-logo="/moderncalendar/calendarsmalllogo.png"
-                data-foreground-text="light" data-background-color="#5133AB"
-                data-splash-image="/moderncalendar/calendarsplash.png"
-                data-show-text-on="square|wide|large"
-                data-url="/moderncalendar/app/app.html"
-                style="grid-column-start: 5; grid-row-start: 3;">
-            </div>
+                <div class="tile-group-tiles">
+                    <div class="tile-container" data-tile-size="large"
+                        data-package-name="microsoft.windowscommunicationsapps"
+                        data-package-version="17.5.9600.22013"
+                        data-id="Microsoft.WindowsLive.Mail"
+                        data-display-name="Mail"
+                        data-icon="/modernmail/Res/MailLogo.png"
+                        data-square-logo="/modernmail/Res/MailLogo.png"
+                        data-wide-logo="/modernmail/Res/MailWideLogo.png"
+                        data-square-small-logo="/modernmail/Res/MailSmallLogo.png"
+                        data-square-large-logo="/modernmail/Res/MailLargeLogo.png"
+                        data-foreground-text="light"
+                        data-background-color="#0072C6"
+                        data-splash-image="/modernmail/Res/MailSplash.png"
+                        data-show-text-on="square|wide|large"
+                        data-url="/modernmail/app/app.html">
+                    </div>
 
-            <div class="tile-container" data-display-name="Skype"
-                data-tile-size="square" data-package-name="microsoft.skypeapp"
-                data-package-version="3.1.0.1016" data-id="App"
-                data-square-logo="/images/scale-100/s_logo.png"
-                data-square-small-logo="/images/targetsize-48/skypeSmall.png"
-                data-wide-logo="/images/scale-100/skype_wide_logo.png"
-                data-foreground-text="light" data-background-color="#00AFF0"
-                data-splash-image="/images/scale-100/Splash.png"
-                data-show-text-on="square" data-url="/default.html"
-                style="grid-column-start: 7; grid-row-start: 3;">
-            </div>
+                    <div class="tile-container" data-tile-size="wide"
+                        style="grid-column-start: 5;"
+                        data-package-name="microsoft.windowscommunicationsapps"
+                        data-package-version="17.5.9600.22013"
+                        data-id="Microsoft.WindowsLive.People"
+                        data-display-name="People"
+                        data-square-logo="/modernpeople/People.png"
+                        data-wide-logo="/modernpeople/PeopleWide.png"
+                        data-square-small-logo="/modernpeople/PeopleSmall.png"
+                        data-square-large-logo="/modernpeople/PeopleLarge.png"
+                        data-foreground-text="light"
+                        data-background-color="#d24726"
+                        data-splash-image="/modernpeople/PeopleSplash.png"
+                        data-show-text-on="square|wide|large"
+                        data-url="/modernpeople/appframe/people.htm">
+                    </div>
 
-            <div class="tile-container" data-display-name="PC settings"
-                data-tile-size="square" data-package-name="microsoft.immersivecontrolpanel"
-                data-package-version="6.2.0.0" data-id="microsoft.windows.immersivecontrolpanel"
-                data-square-logo="/images/tilesmall.png"
-                data-square-small-logo="/images/logo.png"
-                data-foreground-text="light" data-background-color="#5133AB"
-                data-splash-image="/images/splashscreen.png"
-                data-url="/default.html"
-                style="grid-column-start: 1; grid-row-start: 5;">
-            </div>
+                    <div class="tile-container" data-display-name="Calendar"
+                        data-tile-size="square"
+                        data-package-name="microsoft.windowscommunicationsapps"
+                        data-package-version="17.5.9600.22013"
+                        data-id="Microsoft.WindowsLive.Calendar"
+                        data-square-logo="/moderncalendar/calendarlogo.png"
+                        data-wide-logo="/moderncalendar/CalendarWideLogo.png"
+                        data-square-small-logo="/moderncalendar/calendarsmalllogo.png"
+                        data-square-large-logo="/moderncalendar/CalendarLargeLogo.png"
+                        data-foreground-text="light"
+                        data-background-color="#5133AB"
+                        data-splash-image="/moderncalendar/calendarsplash.png"
+                        data-show-text-on="square|wide|large"
+                        data-url="/moderncalendar/app/app.html"
+                        style="grid-column-start: 5; grid-row-start: 3;">
+                    </div>
 
-            <div class="tile-container" data-display-name="WinJS Test App"
-                data-tile-size="small" data-package-name="wankerr.winjstest"
-                data-package-version="6.2.0.0" data-id="wankerr.winjstest"
-                data-square-logo="/images/tilesmall.png"
-                data-square-small-logo="/images/logo.png"
-                data-foreground-text="light" data-background-color="#5133AB"
-                data-splash-image="/images/splashscreen.png"
-                data-url="/default.html"
-                style="grid-column-start: 3; grid-row-start: 5;">
-            </div>
+                    <div class="tile-container" data-display-name="Music"
+                        data-tile-size="small"
+                        data-package-name="microsoft.zunemusic"
+                        data-package-version="2.6.672.0"
+                        data-id="Microsoft.ZuneMusic"
+                        data-icon="/images/Tiles/MusicIcon.png"
+                        data-square-logo="/images/Tiles/XBL_MUSIC_150x150_A.png"
+                        data-square-small-logo="/images/Tiles/XBL_MUSIC_50x50_A.png"
+                        data-square-large-logo="/images/Tiles/XBL_MUSIC_310x310_A.png"
+                        data-wide-logo="/images/Tiles/XBL_MUSIC_310x150_C.png"
+                        data-foreground-text="light"
+                        data-background-color="#D24726"
+                        data-splash-image="/images/Tiles/XBL_MUSIC_620x300_A.png"
+                        data-show-text-on="square|wide|large"
+                        data-url="/main.html"
+                        style="grid-column-start: 7; grid-row-start: 3;">
+                    </div>
 
-            <!-- <div class="c-progress f-indeterminate-local f-progress-large" tabindex="0" role="progressbar">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div> -->
+                    <div class="tile-container" data-display-name="Video"
+                        data-tile-size="small"
+                        data-package-name="microsoft.zunevideo"
+                        data-package-version="2.6.446.0"
+                        data-id="Microsoft.ZuneVideo"
+                        data-icon="/images/Tiles/VideoIcon.png"
+                        data-square-logo="/images/Tiles/XBL_VIDEO_150x150_A.png"
+                        data-square-small-logo="/images/Tiles/XBL_VIDEO_50x50_A.png"
+                        data-square-large-logo="/images/Tiles/XBL_VIDEO_310x310_A.png"
+                        data-wide-logo="/images/Tiles/XBL_VIDEO_310x150_C.png"
+                        data-foreground-text="light"
+                        data-background-color="#AC193D"
+                        data-splash-image="/images/Tiles/XBL_VIDEO_620x300_A.png"
+                        data-show-text-on="square|wide|large"
+                        data-url="/main.html"
+                        style="grid-column-start: 8; grid-row-start: 3;">
+                    </div>
+
+                    <div class="tile-container" data-display-name="Skype"
+                        data-tile-size="small"
+                        data-package-name="microsoft.skypeapp"
+                        data-package-version="3.1.0.1016" data-id="App"
+                        data-icon="/images/targetsize-48/skypeSmall.png"
+                        data-square-logo="/images/scale-100/s_logo.png"
+                        data-square-small-logo="/images/scale-100/skypeSmall.png"
+                        data-wide-logo="/images/scale-100/skype_wide_logo.png"
+                        data-foreground-text="light"
+                        data-background-color="#00AFF0"
+                        data-splash-image="/images/scale-100/Splash.png"
+                        data-show-text-on="square" data-url="/default.html"
+                        style="grid-column-start: 7; grid-row-start: 4;">
+                    </div>
+
+                    <div class="tile-container" data-display-name="PC settings"
+                        data-tile-size="small"
+                        data-package-name="microsoft.immersivecontrolpanel"
+                        data-package-version="6.2.0.0"
+                        data-id="microsoft.windows.immersivecontrolpanel"
+                        data-square-logo="/images/tilesmall.png"
+                        data-square-small-logo="/images/logo.png"
+                        data-foreground-text="light"
+                        data-background-color="#5133AB"
+                        data-splash-image="/images/splashscreen.png"
+                        data-url="/default.html"
+                        style="grid-column-start: 8; grid-row-start: 4;">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="start-footer">
+            <div class="start-show-all-button start-arrow-button" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="start-show-all-icon" viewBox="2.5 7 15 15">
+                    <g id="layer0">
+                        <path id="circle"
+                            d="m 16.650391,14.580078 c 0,-0.898437 -0.172528,-1.746419 -0.517579,-2.543945 C 15.78776,11.238607 15.317383,10.541992 14.72168,9.946289 14.125977,9.350586 13.430989,8.878581 12.636719,8.530273 11.842447,8.181967 10.996094,8.007812 10.097656,8.007812 9.505208,8.007812 8.930664,8.087565 8.374023,8.24707 7.817383,8.406576 7.294922,8.629559 6.806641,8.916016 6.318359,9.202475 5.872396,9.545898 5.46875,9.946289 5.065104,10.34668 4.720052,10.791016 4.433594,11.279297 c -0.286459,0.488281 -0.50944,1.010742 -0.668946,1.567383 -0.159505,0.55664 -0.239257,1.13444 -0.239257,1.733398 0,0.598959 0.079752,1.176758 0.239257,1.733399 0.159506,0.55664 0.382487,1.077474 0.668946,1.5625 0.286458,0.485025 0.629883,0.927734 1.030273,1.328125 0.400391,0.40039 0.844727,0.743814 1.333008,1.030273 0.488281,0.286459 1.010742,0.507813 1.567383,0.664063 0.55664,0.15625 1.134439,0.234374 1.733398,0.234374 0.598958,0 1.176758,-0.07812 1.733399,-0.234374 0.55664,-0.15625 1.077473,-0.377604 1.5625,-0.664063 0.485025,-0.286459 0.927734,-0.628256 1.328125,-1.025391 0.40039,-0.397134 0.743814,-0.839843 1.030273,-1.328125 0.286457,-0.488281 0.507813,-1.010742 0.664063,-1.567382 0.15625,-0.556641 0.234375,-1.13444 0.234375,-1.733399 z" />
+                        <path id="arrow"
+                            d="m 14.199219,14.550818 v 0.0293 l -3.056641,3.203125 H 8.916016 l 2.34375,-2.392578 H 6.181641 v -1.650391 h 5.078125 l -2.34375,-2.382812 h 2.226562 z" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
 
+    <div class="all-apps start-screen">
+
+        <div class="start-header">
+            <h1 class="start-title">What's this?</h1>
         </div>
 
+        <div class="start-tiles all-apps-text">
+            <div>
+                <p>Did you know that the vast majority of the preinstalled
+                    "metro" apps in Windows 8.1 are written in JavaScript?
+                    Nor did I! But when I found out, the next logical thought
+                    was, "will these run in a normal web browser?", this
+                    website is the result of that thought.</p>
+                <p>Almost every app you see here is directly pulled from the
+                    32-bit version of Windows 8.1 build 6300, then modified
+                    as needed in order to run in most modern web browsers.
+                    Available functionality varies simply because we're running
+                    within a web browser, but I aim to make each app as usable
+                    as possible.</p>
+                <p>If you wanna see more about the project, you can <a
+                        href="https://github.com/WamWooWam/WinJSGraveyard">find
+                        it on GitHub</a>, or <a
+                        href="https://wamwoowam.co.uk/blog/">take a look at my
+                        blog</a> which digs deeper into the nitty gritty details
+                    of the project as a whole.
+                </p>
+            </div>
+        </div>
+
+        <div class="start-footer">
+            <div class="start-hide-all-button start-arrow-button" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="start-show-all-icon" viewBox="2.5 7 15 15">
+                    <g id="layer0">
+                        <path id="circle"
+                            d="m 16.650391,14.580078 c 0,-0.898437 -0.172528,-1.746419 -0.517579,-2.543945 C 15.78776,11.238607 15.317383,10.541992 14.72168,9.946289 14.125977,9.350586 13.430989,8.878581 12.636719,8.530273 11.842447,8.181967 10.996094,8.007812 10.097656,8.007812 9.505208,8.007812 8.930664,8.087565 8.374023,8.24707 7.817383,8.406576 7.294922,8.629559 6.806641,8.916016 6.318359,9.202475 5.872396,9.545898 5.46875,9.946289 5.065104,10.34668 4.720052,10.791016 4.433594,11.279297 c -0.286459,0.488281 -0.50944,1.010742 -0.668946,1.567383 -0.159505,0.55664 -0.239257,1.13444 -0.239257,1.733398 0,0.598959 0.079752,1.176758 0.239257,1.733399 0.159506,0.55664 0.382487,1.077474 0.668946,1.5625 0.286458,0.485025 0.629883,0.927734 1.030273,1.328125 0.400391,0.40039 0.844727,0.743814 1.333008,1.030273 0.488281,0.286459 1.010742,0.507813 1.567383,0.664063 0.55664,0.15625 1.134439,0.234374 1.733398,0.234374 0.598958,0 1.176758,-0.07812 1.733399,-0.234374 0.55664,-0.15625 1.077473,-0.377604 1.5625,-0.664063 0.485025,-0.286459 0.927734,-0.628256 1.328125,-1.025391 0.40039,-0.397134 0.743814,-0.839843 1.030273,-1.328125 0.286457,-0.488281 0.507813,-1.010742 0.664063,-1.567382 0.15625,-0.556641 0.234375,-1.13444 0.234375,-1.733399 z" />
+                        <path id="arrow"
+                            d="m 14.199219,14.550818 v 0.0293 l -3.056641,3.203125 H 8.916016 l 2.34375,-2.392578 H 6.181641 v -1.650391 h 5.078125 l -2.34375,-2.382812 h 2.226562 z" />
+                    </g>
+                </svg>
+            </div>
+        </div>
     </div>
 
     <div class="core-window-container">

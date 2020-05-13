@@ -4713,6 +4713,8 @@
                 if (!name) {
                     return null;
                 }
+
+                console.warn(`Requested member ${root}.${name}`);
                 return getMemberFiltered(name, root || _Global, nop);
             }
 
@@ -12305,10 +12307,10 @@ StringLiteral       7.8.4
 
             function getStateRecord(href, removeFromCache) {
                 if (typeof href === "string") {
-                    return loadFromCache(href, removeFromCache);
+                    return loadFromCache("." + href, removeFromCache);
                 } else {
                     var state = {
-                        docfrag: _ElementUtilities.data(href).docFragment
+                        docfrag: "." + _ElementUtilities.data(href).docFragment
                     };
                     if (!state.docfrag) {
                         var fragment = _Global.document.createDocumentFragment();

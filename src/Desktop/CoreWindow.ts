@@ -67,7 +67,7 @@ export class CoreWindow {
                 $d("<div>").addClass("core-window-icon-container")
                     .css("background", this._app.backgroundColor)
                     .append([
-                        $d("<img>").addClass("core-window-icon").attr("src", app.squareSmallLogoUrl.replace(".png", ".targetsize-48.png"))
+                        $d("<img>").addClass("core-window-icon").attr("src", app.icon.replace(".png", ".targetsize-48.png"))
                     ]),
                 $d("<div>").addClass("core-window-title").text(app.displayName),
                 $d("<button>").addClass("core-window-minimise"),

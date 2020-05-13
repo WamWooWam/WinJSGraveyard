@@ -6,16 +6,15 @@ export namespace ApplicationModel {
     export namespace Resources {
         export class ResourceLoader {
             private static loader: ResourceLoader;
-            private languages: Map<string, any>;
+            private static languages: Map<string, any>;
             private count: number;
 
             constructor() {
-                this.languages = new Map();
                 this.count = 0;
             }
 
             get languageMap(): Map<string, any> {
-                return this.languages;
+                return ResourceLoader.languages ?? (ResourceLoader.languages = new Map());
             }
 
             static getForCurrentView() {
@@ -44,7 +43,7 @@ export namespace ApplicationModel {
 
                 let string = null;
 
-                for (const language of this.languages) {
+                for (const language of ResourceLoader.languages) {
                     if (string != null)
                         break;
 

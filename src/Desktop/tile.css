@@ -65,14 +65,19 @@
     flex: 1;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
 .tile-front-image {
-    height: 120px;
+    max-height: 120px;
 }
 
 .tile-front-image.small {
-    height: initial;
+    max-height: 50px;
+}
+
+.tile-front-image.large {
+   max-height: 246px;
 }
 
 .tile-front-text {

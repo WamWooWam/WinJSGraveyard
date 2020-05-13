@@ -1,15 +1,13 @@
-
-@import "./fonts.css";
-
 body {
     margin: 0;
-    background: #180053 !important;
-    color: white !important;
+    background: #180053;
+    color: white;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
     position: fixed;
     width: 100vw;
     height: 100vh;
+    transition: background-color 0.66s ease-out;
 }
 
 .invisible {

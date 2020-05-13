@@ -26,7 +26,7 @@ export class Account extends PlatformObject {
 
     @Enumerable(true)
     public get displayName(): string {
-        return "Wan Kerr";
+        return "Wan Kerr Co. Ltd.";
     }
 
     @Enumerable(true)
@@ -74,6 +74,11 @@ export class Account extends PlatformObject {
     @Enumerable(true)
     public get editableResources(): Collection {
         return new Collection([WindowsLive.Platform.ResourceType.contacts]);
+    }
+
+    @Enumerable(true)
+    public get serviceContactsName(): string {
+        return "Wan Kerr Co. Ltd.";
     }
 
     lastAuthResult: number = 0;

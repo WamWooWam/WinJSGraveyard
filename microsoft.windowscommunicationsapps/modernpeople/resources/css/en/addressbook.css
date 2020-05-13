@@ -1125,7 +1125,7 @@
 }
 
 .allSection .gridCanvas:not(.animating),.searchSection .gridCanvas:not(.animating),.pickerAlphabeticSection .gridCanvas:not(.animating) {
-    background: url("./modernpeople/images/ic-placeholder.png");
+    background: url("/microsoft.windowscommunicationsapps/modernpeople/images/ic-placeholder.png");
 }
 
 .allSection .gridCanvas:not(.animating)>.patch,.searchSection .gridCanvas:not(.animating)>.patch,.pickerAlphabeticSection .gridCanvas:not(.animating)>.patch {
@@ -1133,7 +1133,7 @@
 }
 
 .pp-hasDisambiguators .gridCanvas:not(.animating) {
-    background: url("./modernpeople/images/ic-placeholder-disambiguator.png");
+    background: url("/microsoft.windowscommunicationsapps/modernpeople/images/ic-placeholder-disambiguator.png");
 }
 
 .socialSectionGrid .notificationList {

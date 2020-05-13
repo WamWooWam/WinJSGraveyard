@@ -1,0 +1,9 @@
+{
+  "name": "microsoft.zunemusic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.43.0"
+  }
+}
